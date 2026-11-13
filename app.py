@@ -57,20 +57,16 @@ if file_gambar is not None:
         use_container_width=True
     )
 
-    # Mengubah ukuran gambar
     gambar = gambar.resize((150, 150))
 
-    # Mengubah gambar menjadi array
-    gambar_array = np.array(
-        gambar,
-        dtype=np.float32
-    )
+    gambar_array = np.array(gambar, dtype=np.float32)
+
+    # Normalisasi gambar
+    gambar_array = gambar_array / 255.0
 
     # Menambahkan dimensi batch
-    gambar_array = np.expand_dims(
-        gambar_array,
-        axis=0
-    )
+    gambar_array = np.expand_dims(gambar_array, axis=0)
+
 
     # Melakukan prediksi
     hasil = model.predict(
